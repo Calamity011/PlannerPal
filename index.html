@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PlannerPal</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="#dashboard" class="brand">
+      <span class="brand-badge">S</span>
+      <span class="brand-name">PlannerPal</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#dashboard" class="active">Dashboard</a></li>
+      <li><a href="#tasks">My Tasks</a></li>
+      <li><a href="#progress">Progress</a></li>
+      <li><a href="#scheduler">Week Scheduler</a></li>
+      <li><a href="#calendar">Calendar</a></li>
+      <li><a href="#notes">My Notes</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="container">
+
+
+  <header class="hero" id="dashboard">
+    <div class="hero-left">
+      <p class="eyebrow">YOUR PERSONAL STUDY SPACE</p>
+      <h1>Make time for what matters.</h1>
+      <p class="sub">Plan your schoolwork, keep your notes, and track your progress in one place.</p>
+    </div>
+    <div class="hero-date">
+      <span>Today</span>
+      <strong id="todayDate">Tue, Oct 13</strong>
+    </div>
+  </header>
+
+
+  <section class="block">
+    <div class="block-head">
+      <div>
+        <p class="eyebrow">OVERVIEW</p>
+        <h2>Your dashboard</h2>
+      </div>
+      <a href="#tasks" class="btn-primary">+ Add a task</a>
+    </div>
+
+    <div class="stat-grid">
+      <article class="stat-card">
+        <p>Total tasks</p>
+        <strong id="totalCount">0</strong>
+        <small>All your school tasks</small>
+      </article>
+      <article class="stat-card">
+        <p>Pending</p>
+        <strong id="pendingCount">0</strong>
+        <small>Still to be done</small>
+      </article>
+      <article class="stat-card">
+        <p>Completed</p>
+        <strong id="completedCount">0</strong>
+        <small>Tasks you finished</small>
+      </article>
+      <article class="stat-card">
+        <p>Completion</p>
+        <strong id="overviewPercent">0%</strong>
+        <small>Your current progress</small>
+      </article>
+    </div>
+
+    <div class="dash-bottom">
+      <div class="upcoming-box">
+        <div class="upcoming-head">
+          <div>
+            <p class="eyebrow">COMING UP</p>
+            <h3>Upcoming tasks</h3>
+          </div>
+          <a href="#tasks" class="link">View all</a>
+        </div>
+        <div id="upcomingList" class="upcoming-list">
+          <p class="muted">No pending tasks. Add a task in My Tasks to see it here.</p>
+        </div>
+      </div>
+
+      <div class="motivate-box">
+        <p class="eyebrow light">SMALL STEPS COUNT</p>
+        <h3>Keep moving forward.</h3>
+        <p>A little progress every day can make schoolwork feel easier. Choose one task and start there.</p>
+        <a href="#progress" class="btn-light">See my progress</a>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="block" id="progress">
+    <p class="eyebrow">LOOK HOW FAR YOU'VE COME</p>
+    <h2>Progress Tracker</h2>
+    <p class="sub">Your progress updates when you complete or add tasks.</p>
+
+    <div class="progress-card">
+      <div class="progress-top">
+        <div>
+          <p class="muted">Task completion</p>
+          <h3 id="progressPercent">0% completed</h3>
+        </div>
+        <div class="donut" id="donut">
+          <span id="donutText">0%</span>
+        </div>
+      </div>
+
+      <div class="track"><div id="progressBar"></div></div>
+
+      <div class="legend">
+        <span><i class="dot green"></i>Completed <b id="progressCompleted">0</b></span>
+        <span><i class="dot yellow"></i>Pending <b id="progressPending">0</b></span>
+        <span><i class="dot purple"></i>Total <b id="progressTotal">0</b></span>
+      </div>
+
+      <p class="muted small" id="progressHint">Add a task to begin tracking your progress.</p>
+    </div>
+
+    <div class="tip-box">
+      <strong>Study tip</strong>
+      <p>Try breaking a big assignment into smaller tasks. Finishing each small step can help you stay motivated.</p>
+    </div>
+  </section>
+
+
+  <section class="block" id="tasks">
+    <p class="eyebrow">STAY ORGANIZED</p>
+    <h2>My Tasks</h2>
+    <p class="sub">Add assignments, set due dates, and mark work as complete.</p>
+
+    <div class="split">
+      <!-- LEFT: form -->
+      <div class="card">
+        <h3>Add a task</h3>
+        <form id="taskForm">
+          <label>Task name
+            <input id="taskInput" placeholder="e.g. Finish JavaScript activity" required>
+          </label>
+          <label>Subject
+            <input id="taskSubject" placeholder="e.g. Web Development" required>
+          </label>
+          <div class="row-2">
+            <label>Due date
+              <input id="taskDue" type="date" required>
+            </label>
+            <label>Priority
+              <select id="taskPriority">
+                <option>Normal</option>
+                <option>High</option>
+                <option>Low</option>
+              </select>
+            </label>
+          </div>
+          <button class="btn-primary" type="submit">Save task</button>
+        </form>
+      </div>
+
+
+      <div class="card">
+        <div class="card-head">
+          <h3>Task list</h3>
+          <small id="taskCount" class="muted">0 tasks</small>
+        </div>
+
+        <div class="toolbar">
+          <input id="taskSearch" placeholder="Search tasks or subjects">
+          <select id="taskFilter">
+            <option value="all">All tasks</option>
+            <option value="pending">Pending</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+
+        <div id="taskList" class="list"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="block" id="scheduler">
+    <p class="eyebrow">PLAN YOUR WEEK</p>
+    <h2>Week Scheduler</h2>
+    <p class="sub">Add study sessions with a start and end time. They appear on the timetable below.</p>
+
+    <div class="split">
+      <!-- LEFT: form -->
+      <div class="card">
+        <h3>Add a session</h3>
+        <form id="sessionForm">
+          <label>Subject or activity
+            <input id="sessionName" placeholder="e.g. Physics review" required>
+          </label>
+          <label>Day
+            <select id="sessionDay">
+              <option>Mon</option><option>Tue</option><option>Wed</option>
+              <option>Thu</option><option>Fri</option><option>Sat</option><option>Sun</option>
+            </select>
+          </label>
+          <div class="row-2">
+            <label>Start time
+              <input id="sessionStart" type="time" value="09:00" required>
+            </label>
+            <label>End time
+              <input id="sessionEnd" type="time" value="10:00" required>
+            </label>
+          </div>
+          <label>Color
+            <select id="sessionColor">
+              <option value="purple">Purple</option>
+              <option value="yellow">Yellow</option>
+              <option value="blue">Blue</option>
+              <option value="green">Green</option>
+              <option value="gray">Gray</option>
+              <option value="red">Red</option>
+              <option value="orange">Orange</option>
+              <option value="pink">Pink</option>
+            </select>
+          </label>
+          <button class="btn-primary" type="submit">Add to scheduler</button>
+        </form>
+      </div>
+
+
+      <div class="card">
+        <div class="scheduler-head">
+          <h3 id="schedTitle">This week</h3>
+          <div class="sched-tabs">
+            <button class="tab active" data-view="week" type="button">Week</button>
+          </div>
+        </div>
+
+        <div id="weekGrid" class="week-grid"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="block" id="calendar">
+    <p class="eyebrow">LOOK AT THE MONTH</p>
+    <h2>Calendar Planner</h2>
+    <p class="sub">Click a day to see tasks due on that date.</p>
+
+    <div class="card">
+      <div class="cal-head">
+        <button id="prevMonth" class="btn-ghost" type="button">← Previous</button>
+        <h3 id="calTitle">Month Year</h3>
+        <button id="nextMonth" class="btn-ghost" type="button">Next →</button>
+      </div>
+
+      <div class="cal-grid" id="calGrid"></div>
+
+      <div id="calDayTasks" class="cal-day-tasks">
+        <p class="muted">Select a day to see tasks.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="block" id="notes">
+    <p class="eyebrow">SAVE YOUR IDEAS</p>
+    <h2>My Notes</h2>
+    <p class="sub">Keep quick reminders and study notes in your browser.</p>
+
+    <div class="split">
+      <div class="card">
+        <h3>Write a note</h3>
+        <form id="noteForm">
+          <label>Note title
+            <input id="noteTitle" placeholder="e.g. HTTP methods" required>
+          </label>
+          <label>Note content
+            <textarea id="noteContent" rows="6" placeholder="Write your key points here..." required></textarea>
+          </label>
+          <button class="btn-primary" type="submit">Save note</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h3>Saved notes</h3>
+          <small id="noteCountLabel" class="muted">0 notes</small>
+        </div>
+        <div class="toolbar">
+          <input id="noteSearch" placeholder="Search notes">
+        </div>
+        <div id="notesList" class="notesgrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>StudyMate · A simple student planner that runs in your browser.</footer>
+</main>
+
+
+<div id="noteModal" class="modal" aria-hidden="true">
+  <div class="backdrop" data-close="yes"></div>
+  <div class="dialog" role="dialog" aria-modal="true">
+    <button id="closeModal" class="x" aria-label="Close" type="button">×</button>
+    <p class="eyebrow">YOUR NOTE</p>
+    <h2 id="modalTitle"></h2>
+    <small id="modalDate"></small>
+    <div id="modalContent" class="fullnote"></div>
+    <button id="modalDone" class="btn-primary" type="button">Done</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
